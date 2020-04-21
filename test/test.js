@@ -2,7 +2,7 @@ const universityDAO = require('../data/daos/university.dao.server');
 const expect = require('chai').expect;
 const assert = require('chai').assert;
 
-describe('#sum()', function() {
+describe('UniversityDaoTest', function() {
 
 
     // 1.  truncateDatabase, 2. populateDatabase
