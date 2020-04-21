@@ -83,8 +83,8 @@ describe('UniversityDaoTest', function() {
     // 8. testDeleteStudent() - uses DAO to remove student Bob and validates the total number of students is 1
     it('testDeleteStudent', async function() {
 
-        const student = await  universityDAO.deleteStudent(234)
-            .then(() => universityDAO.findAllStudents())
+        const student = await  UniversityDAO.deleteStudent(234)
+            .then(() => UniversityDAO.findAllStudents())
             .then(students => students)
 
         assert.lengthOf(student, 1, 'students array contains 1 numbers');
