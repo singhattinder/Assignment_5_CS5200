@@ -1,4 +1,4 @@
-const universityDAO = require('../data/daos/university.dao.server');
+const UniversityDAO = require('../data/daos/university.dao.server');
 const expect = require('chai').expect;
 const assert = require('chai').assert;
 
@@ -9,15 +9,15 @@ describe('UniversityDaoTest', function() {
 
     before(async () => {
         require('../data/db');
-        await universityDAO.truncateDatabase()
-            .then(() => universityDAO.populateDatabase())
+        await UniversityDAO.truncateDatabase()
+            .then(() => UniversityDAO.populateDatabase())
     })
 
 
 
     // 3.  testStudentsInitialCount   uses DAO to validate there are 2 students initially
     it('testStudentsInitialCount', async function() {
-       const number = await universityDAO.findAllStudents()
+       const number = await UniversityDAO.findAllStudents()
             .then(students =>  students);
         assert.lengthOf(number, 2, 'student array contains 2 numbers');
 
@@ -26,7 +26,7 @@ describe('UniversityDaoTest', function() {
     // 4. testQuestionsInitialCount  uses DAO to validate there are 4 questions initially
     it('testQuestionsInitialCount', async function() {
 
-        const number = await universityDAO.findAllQuestions()
+        const number = await UniversityDAO.findAllQuestions()
             .then(questions => questions);
         assert.lengthOf(number, 4, 'question array contains 4 numbers');
 
@@ -36,7 +36,7 @@ describe('UniversityDaoTest', function() {
     // 5. testAnswersInitialCount() - uses DAO to validate there are 8 answers initially
     it('testAnswersInitialCount', async function() {
 
-        const number = await universityDAO.findAllAnswers()
+        const number = await UniversityDAO.findAllAnswers()
             .then(answers => answers);
         assert.lengthOf(number, 8, 'answers array contains 8 numbers');
 
@@ -48,9 +48,9 @@ describe('UniversityDaoTest', function() {
 
     it('testDeleteAnswer', async function() {
 
-      const answers = await  universityDAO.deleteAnswer(890)
-            .then(() => universityDAO.findAllAnswers())
-            .then(() => universityDAO.findAnswersByStudent(234))
+      const answers = await  UniversityDAO.deleteAnswer(890)
+            .then(() => UniversityDAO.findAllAnswers())
+            .then(() => UniversityDAO.findAnswersByStudent(234))
 
 
         // validate Bob's answer is deleted and his total answers is 3
@@ -58,7 +58,7 @@ describe('UniversityDaoTest', function() {
 
 
       // validate total remaining answers is 7
-        const number = await universityDAO.findAllAnswers()
+        const number = await UniversityDAO.findAllAnswers()
             .then(answers => answers);
         assert.lengthOf(number, 7, 'answers array contains 7 numbers');
 
@@ -69,8 +69,8 @@ describe('UniversityDaoTest', function() {
     // “Is the following schema valid?” and validates the total number of questions is 3
     it('testDeleteQuestion', async function() {
 
-        const question = await universityDAO.deleteQuestion(321)
-            .then(() => universityDAO.findAllQuestions())
+        const question = await UniversityDAO.deleteQuestion(321)
+            .then(() => UniversityDAO.findAllQuestions())
             .then(questions => questions);
 
         // validate Bob's answer is deleted and his total answers is 3
